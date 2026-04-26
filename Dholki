@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dholki Invitation</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #fff0f5, #ffe4e1);
+  overflow: hidden;
+}
+
+/* PASSWORD SCREEN */
+#password-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff0f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  text-align: center;
+}
+
+.box input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.box button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  background: #e91e63;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* CARD */
+#card {
+  display: none;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.title {
+  font-size: 40px;
+  color: #c2185b;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.details {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* FLOWERS */
+.flower {
+  position: absolute;
+  top: -50px;
+  width: 25px;
+  height: 25px;
+  background: pink;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
+</style>
+
+</head>
+<body>
+
+<!-- PASSWORD -->
+<div id="password-screen">
+  <div class="box">
+    <h2>Enter Password</h2>
+    <input type="password" id="password">
+    <br>
+    <button onclick="checkPassword()">Enter</button>
+    <p id="error" style="color:red;"></p>
+  </div>
+</div>
+
+<!-- CARD -->
+<div id="card">
+  <div class="title">Noor-ul-ain’s</div>
+  <div class="subtitle">💃 DHOLKI 💃</div>
+  <div class="details">
+    Join us for a joyful evening of music & celebration 🎶<br><br>
+    📅 Sunday, April 26<br>
+    ⏰ 4:00 PM<br><br>
+    📍 162B Defence Road<br>
+    Muhafiz Town Phase 2, Lahore
+  </div>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8e0e0c8a6.mp3?filename=romantic-background-112191.mp3">
+</audio>
+
+<script>
+function checkPassword() {
+  const input = document.getElementById("password").value;
+
+  if (input === "Noor") {
+    document.getElementById("password-screen").style.display = "none";
+    document.getElementById("card").style.display = "block";
+
+    document.getElementById("music").play();
+  } else {
+    document.getElementById("error").innerText = "Wrong Password!";
+  }
+}
+
+// FLOWERS
+function createFlower() {
+  const flower = document.createElement("div");
+  flower.classList.add("flower");
+
+  flower.style.left = Math.random() * window.innerWidth + "px";
+  flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+  document.body.appendChild(flower);
+
+  setTimeout(() => flower.remove(), 8000);
+}
+
+setInterval(createFlower, 300);
+</script>
+
+</body>
+</html>
