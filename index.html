@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-/* PASSWORD SCREEN */
+/* PASSWORD */
 #password-screen {
   position: fixed;
   width: 100%;
@@ -28,50 +28,69 @@ body {
 }
 
 .box input {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 .box button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   margin-top: 10px;
   background: #e91e63;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 /* CARD */
 #card {
   display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
   text-align: center;
-  padding-top: 80px;
+  background: white;
+  padding: 40px;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
 }
 
 .title {
-  font-size: 40px;
+  font-size: 42px;
   color: #c2185b;
   font-weight: bold;
 }
 
 .subtitle {
-  font-size: 24px;
+  font-size: 28px;
   margin: 10px 0;
+  color: #ff4081;
 }
 
 .details {
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 20px;
+  line-height: 1.6;
 }
 
 /* FLOWERS */
 .flower {
   position: absolute;
   top: -50px;
-  width: 25px;
-  height: 25px;
-  background: pink;
-  border-radius: 50%;
+  font-size: 24px;
   animation: fall linear infinite;
 }
 
@@ -88,8 +107,8 @@ body {
 <!-- PASSWORD -->
 <div id="password-screen">
   <div class="box">
-    <h2>Enter Password</h2>
-    <input type="password" id="password">
+    <h2>🔐 Enter Password</h2>
+    <input type="password" id="password" placeholder="Password">
     <br>
     <button onclick="checkPassword()">Enter</button>
     <p id="error" style="color:red;"></p>
@@ -98,14 +117,20 @@ body {
 
 <!-- CARD -->
 <div id="card">
-  <div class="title">Noor-ul-ain’s</div>
-  <div class="subtitle">💃 DHOLKI 💃</div>
+  <div class="title">✨ Noor-ul-ain ✨</div>
+  <div class="subtitle">💃 DHOLKI NIGHT 🥁</div>
+
   <div class="details">
-    Join us for a joyful evening of music & celebration 🎶<br><br>
-    📅 Sunday, April 26<br>
-    ⏰ 4:00 PM<br><br>
-    📍 162B Defence Road<br>
-    Muhafiz Town Phase 2, Lahore
+    🌸 Join us for a joyful evening 🌸<br>
+    filled with music, dance & celebrations 🎶💃✨<br><br>
+
+    📅 <b>Sunday, April 26</b><br>
+    ⏰ <b>4:00 PM</b><br><br>
+
+    📍 <b>162B Defence Road</b><br>
+    Muhafiz Town Phase 2, Lahore<br><br>
+
+    💖 We can’t wait to celebrate with you! 💖
   </div>
 </div>
 
@@ -128,10 +153,14 @@ function checkPassword() {
   }
 }
 
-// FLOWERS
+// FLOWERS (emoji version)
+const flowers = ["🌸","🌺","🌼","💮","🌷"];
+
 function createFlower() {
   const flower = document.createElement("div");
   flower.classList.add("flower");
+
+  flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
 
   flower.style.left = Math.random() * window.innerWidth + "px";
   flower.style.animationDuration = (3 + Math.random() * 5) + "s";
